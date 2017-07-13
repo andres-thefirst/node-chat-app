@@ -8,9 +8,9 @@ socket.on('disconnect', function() {
 });
 
 socket.on('newMessage', function(message) {
-    console.log('Got message', message);
+    var formatttedTime = moment(message.createdAt).format('h:mm a');
     var li = $('<li></li>');
-    li.text(message.from + ':' + message.text);
+    li.text(`${message.from}  ${formatttedTime}: ${message.text}`);
 
     $('#messages').append(li);
 });
@@ -18,8 +18,9 @@ socket.on('newMessage', function(message) {
 socket.on('newLocationMessage', (message) => {
   var li = $('<li></li>');
   var a = $('<a target="_blanck">My current location</a>')
+  var formatttedTime = moment(message.createdAt).format('h:mm a');
 
-  li.text(message.from + ': ');
+  li.text(`${message.from} ${formatttedTime}: `);
   a.attr('href', message.url);
   li.append(a);
   $('#messages').append(li);
