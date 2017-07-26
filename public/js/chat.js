@@ -40,8 +40,6 @@ socket.on('updateUserList', function (users) {
   });
 
   $('#users').html(ol);
-
-  console.log('users list', users);
 });
 
 socket.on('newMessage', function(message) {
